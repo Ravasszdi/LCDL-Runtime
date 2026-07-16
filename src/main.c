@@ -13,7 +13,6 @@ int main(){
 // for testing we will *only* use an 8 bits system
 //  }
     loop();
-    printf("hello world!\n");
     return 0;
 }
 

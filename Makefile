@@ -1,7 +1,7 @@
 CC = gcc
 ARGS = -Wall
 OUTPUT = ./build
-FILES = $(OUTPUT)/main.o $(OUTPUT)/libs/runtime.o $(OUTPUT)/libs/operators.o
+FILES = $(OUTPUT)/main.o $(OUTPUT)/libs/runtime.o $(OUTPUT)/libs/operators.o $(OUTPUT)/libs/lexer.o
 
 $(OUTPUT)/main.o: ./src/main.c
 	@echo "making main.o"
@@ -16,6 +16,9 @@ $(OUTPUT)/libs/operators.o: ./src/hami_pass32/operators/operators.c
 	@echo "making operators.o"
 	@$(CC) $(ARGS) -c ./src/hami_pass32/operators/operators.c -o $(OUTPUT)/libs/operators.o
 
+$(OUTPUT)/libs/lexer.o: ./src/hami_pass32/lexer/lexer.c
+	@echo "making operators.o"
+	@$(CC) $(ARGS) -c ./src/hami_pass32/lexer/lexer.c -o $(OUTPUT)/libs/lexer.o
 
 build: $(FILES) $(OUTPUT)
 	@echo "making build.out"

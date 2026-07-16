@@ -1,4 +1,4 @@
 // *only* std libs
+#include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-#define MEM_SIZE 256
