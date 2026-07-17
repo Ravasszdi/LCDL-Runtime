@@ -1,6 +1,4 @@
 #include "lexer.h"
-#include <stdalign.h>
-#include <stdbool.h>
 
 struct ops make_ops();
 enum e_ops get_ops(char text[]);
@@ -8,8 +6,12 @@ bool str_eql(char a[], char b[]);
 union ref_literal_type ref_literal_parser(char text[]);
 int num_parser(char number[], int base);
 
+static int lexer_group;
 
 struct ops* lexer(char inst_list[]){
+
+    lexer_group = a_find_free();
+
     int inst_size = 0;
     for (int i = 0; inst_list[i]!='\0'; i++) {
         if (inst_list[i]==';') {
@@ -17,7 +19,7 @@ struct ops* lexer(char inst_list[]){
         }
     }
 
-    struct ops* op_list = malloc(sizeof(struct ops)*inst_size);
+    struct ops* op_list = a_alloc(lexer_group, sizeof(struct ops)*inst_size);
     int start = 0;
     for (int i = 0; inst_list[i]!='\0'; i++) {
         if(inst_list[i]==';'){
@@ -112,8 +114,14 @@ int num_parser(char number[], int base){
             case '7': num += 7;
             case '8': num += 8;
             case '9': num += 9;
+            case 'a': num += 10;
+            case 'b': num += 11;
+            case 'c': num += 12;
+            case 'd': num += 13;
+            case 'e': num += 14;
+            case 'f': num += 15;
         }
-        num *= 10;
+        num *= base;
     }
     return num;
 }

@@ -1,5 +1,5 @@
 #include "../../libs.h"
-#include "../../communs.h"
-#include "../operators/operators.h"
+#include "./../operators/operators.h"
+#include "./../../arenas/arenas.h"
 
 void runtime(int memstack[]);

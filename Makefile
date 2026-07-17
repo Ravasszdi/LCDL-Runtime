@@ -1,7 +1,7 @@
 CC = gcc
-ARGS = -Wall
-OUTPUT = ./build
-FILES = $(OUTPUT)/main.o $(OUTPUT)/libs/runtime.o $(OUTPUT)/libs/operators.o $(OUTPUT)/libs/lexer.o
+ARGS = -Wall -ffreestanding -nostdlib
+OUTPUT = ./.build
+FILES = $(OUTPUT)/main.o $(OUTPUT)/libs/runtime.o $(OUTPUT)/libs/operators.o $(OUTPUT)/libs/lexer.o $(OUTPUT)/libs/arenas.o
 
 $(OUTPUT)/main.o: ./src/main.c
 	@echo "making main.o"
@@ -24,6 +24,10 @@ build: $(FILES) $(OUTPUT)
 	@echo "making build.out"
 	@$(CC) $(FILES) -o $(OUTPUT)/build.out
 
+$(OUTPUT)/libs/arenas.o: ./src/arenas/arenas.c
+	@echo "making main.o"
+	@$(CC) $(ARGS) -c ./src/arenas/arenas.c -o $(OUTPUT)/libs/arenas.o
+
 run: build $(OUTPUT)/build.out
 	@echo "---Running program.---"
 	@$(OUTPUT)/build.out
@@ -33,8 +37,10 @@ clear:
 	@echo "Cleaning up!"
 	rm -f ./build/libs/*
 	rm -f ./build/*
+	rm -f ./build/micro_controler/*
 
 init:
 	@echo "making file structure"
 	mkdir build
 	mkdir ./build/libs
+	mkdir ./build/micro_controler

@@ -1,5 +1,7 @@
 #include "./../../libs.h"
-#include "./../../communs.h"
+#include "./../../arenas/arenas.h"
+
+static int lexer_group;
 
 enum e_ops {
     NOP,    //0
