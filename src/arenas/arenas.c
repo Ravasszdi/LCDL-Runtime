@@ -1,9 +1,6 @@
 #include "arenas.h"
 
-#define ALIGNMENT 4
-
 static arena arenas[ARENA_AMOUNT];
-
 
 void* a_alloc(int arena_id, int byte_amount){
     if (arenas[arena_id].used_amount + byte_amount > ARENA_SIZE) {
