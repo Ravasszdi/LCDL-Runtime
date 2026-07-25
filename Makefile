@@ -35,9 +35,9 @@ run: build $(OUTPUT)/build.out
 
 clear:
 	@echo "Cleaning up!"
-	rm -f ./build/libs/*
-	rm -f ./build/*
-	rm -f ./build/micro_controler/*
+	rm -f $(OUTPUT)/libs/*
+	rm -f $(OUTPUT)/*
+	rm -f $(OUTPUT)/micro_controler/*
 
 init:
 	@echo "making file structure"
