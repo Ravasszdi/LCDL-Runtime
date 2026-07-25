@@ -1,16 +1,15 @@
 #include "lexer.h"
 
-struct ops make_ops();
-enum e_ops get_ops(char text[]);
+ops make_ops();
+e_ops get_ops(char text[]);
 bool str_eql(char a[], char b[]);
-union ref_literal_type ref_literal_parser(char text[]);
+ref_literal_type ref_literal_parser(char text[]);
 int num_parser(char number[], int base);
 
-static int lexer_group;
 
-struct ops* lexer(char inst_list[]){
+ops* lexer(char inst_list[]){
 
-    lexer_group = a_find_free();
+    lexer_group = a_reserve();
 
     int inst_size = 0;
     for (int i = 0; inst_list[i]!='\0'; i++) {
@@ -33,7 +32,7 @@ struct ops* lexer(char inst_list[]){
     return op_list;
 }
 
-enum e_ops get_ops(char text[]){
+e_ops get_ops(char text[]){
     if (str_eql(text, "nop")) {
         return NOP;
     } else if (str_eql(text, "end")) {
@@ -79,8 +78,8 @@ bool str_eql(char a[], char b[]){
     return a[i]=='\0' && b[i]=='\0';
 }
 
-union ref_literal_type ref_literal_parser(char text[]){
-    union ref_literal_type num;
+ref_literal_type ref_literal_parser(char text[]){
+    ref_literal_type num;
     bool is_ref = *text=='<';
     int base = 0;
     switch (text[1]) {

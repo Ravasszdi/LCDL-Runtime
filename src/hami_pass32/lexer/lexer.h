@@ -3,7 +3,7 @@
 
 static int lexer_group;
 
-enum e_ops {
+typedef enum {
     NOP,    //0
     END,    //1
     AND,    //2
@@ -20,19 +20,19 @@ enum e_ops {
     SHR,    //13
     SHL,    //14
     IF,     //15
-};
+} e_ops;
 
-union ref_literal_type{
+typedef union {
     int literal;
     int referens;
-};
+} ref_literal_type;
 
-struct ops {
-    enum e_ops  ops;
-    union ref_literal_type a;
-    union ref_literal_type b;
-    union ref_literal_type c;
-};
+typedef struct{
+    e_ops  ops;
+    ref_literal_type a;
+    ref_literal_type b;
+    ref_literal_type c;
+} ops ;
 
 
-struct ops* lexer(char[]);
+ops* lexer(char[]);
