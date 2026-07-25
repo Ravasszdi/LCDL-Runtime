@@ -18,7 +18,7 @@ ops* lexer(char inst_list[]){
         }
     }
 
-    struct ops* op_list = a_alloc(lexer_group, sizeof(struct ops)*inst_size);
+    ops* op_list = a_alloc(lexer_group, sizeof(ops)*inst_size);
     int start = 0;
     for (int i = 0; inst_list[i]!='\0'; i++) {
         if(inst_list[i]==';'){
