@@ -1,5 +1,7 @@
 #include "../../libs.h"
 #include "./../operators/operators.h"
-#include "./../../arenas/arenas.h"
+#include "./../lexer/lexer.h"
 
-void runtime(int memstack[]);
+#define REG_SIZE 32
+
+void runtime(ops ops_list[]);

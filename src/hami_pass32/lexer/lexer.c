@@ -19,13 +19,16 @@ ops* lexer(char inst_list[]){
     }
 
     ops* op_list = a_alloc(lexer_group, sizeof(ops)*inst_size);
+
     int start = 0;
     for (int i = 0; inst_list[i]!='\0'; i++) {
         if(inst_list[i]==';'){
 
+        	start = i + 1;
         }
         if (inst_list[i]==' ') {
 
+        	start = i + 1;
         }
     }
 
@@ -99,7 +102,7 @@ ref_literal_type ref_literal_parser(char text[]){
 
 int num_parser(char number[], int base){
     int num = 0;
-    int i = 3;
+    int i;
     for (i = 0; number[i]=='\0'; i++){}
     for(; i>=3; i--){
         switch (number[i]) {
